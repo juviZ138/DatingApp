@@ -1,53 +1,74 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <div class="container">
-    <a class="navbar-brand" routerLink="/" >Dating App</a>
-
+    <a class="navbar-brand" routerLink="/">Dating App</a>
 
     <ul class="navbar-nav me-auto mb-2 mb-md-0">
       @if (accountService.currentUser()) {
-        <li class="nav-item">
-          <a routerLink ="/members" routerLinkActive="active" class="nav-link">Matches</a>
-        </li>
+      <li class="nav-item">
+        <a routerLink="/members" routerLinkActive="active" class="nav-link"
+          >Matches</a
+        >
+      </li>
 
-        <li class="nav-item">
-          <a routerLink="/lists" routerLinkActive="active" class="nav-link">Lists</a>
-        </li>
+      <li class="nav-item">
+        <a routerLink="/lists" routerLinkActive="active" class="nav-link"
+          >Lists</a
+        >
+      </li>
 
-        <li class="nav-item">
-          <a routerLink="/messages" routerLinkActive="active" class="nav-link">Message</a>
-         </li> 
+      <li class="nav-item">
+        <a routerLink="/messages" routerLinkActive="active" class="nav-link"
+          >Message</a
+        >
+      </li>
       }
       <li class="nav-item">
-        <a routerLink="/errors" routerLinkActive="active" class="nav-link">Error</a>
-       </li> 
+        <a routerLink="/errors" routerLinkActive="active" class="nav-link"
+          >Error</a
+        >
+      </li>
     </ul>
 
     @if (accountService.currentUser()) {
-      <div dropdown class="dropdown">
-        <img  class="me-2" 
-            src="{{accountService.currentUser()?.photoUrl || './assets/user.png'}}"
-            alt="user's main image">
-        <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
-          Welcome {{accountService.currentUser()?.username | titlecase }}
-        </a>
-        <div *dropdownMenu="" class="dropdown-menu">
-          <a routerLink="member/edit" class="dropdown-item">Edit Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()">Logout</a>
-        </div>
+    <div dropdown class="dropdown">
+      <img
+        class="me-2"
+        src="{{
+          accountService.currentUser()?.photoUrl || './assets/user.png'
+        }}"
+        alt="user's main image"
+      />
+      <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
+        Welcome {{ accountService.currentUser()?.knownAs }}
+      </a>
+      <div *dropdownMenu="" class="dropdown-menu">
+        <a routerLink="member/edit" class="dropdown-item">Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
-    }
-
-
-    @if (!accountService.currentUser()) {
-    <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off" class="d-flex">
-      <input name="username" [(ngModel)]="model.username" class="form-control me-2" placeholder="Username">
-      <input name="password" [(ngModel)]="model.password" class="form-control me-2" placeholder="Password"
-        type="password">
+    </div>
+    } @if (!accountService.currentUser()) {
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="login()"
+      autocomplete="off"
+      class="d-flex"
+    >
+      <input
+        name="username"
+        [(ngModel)]="model.username"
+        class="form-control me-2"
+        placeholder="Username"
+      />
+      <input
+        name="password"
+        [(ngModel)]="model.password"
+        class="form-control me-2"
+        placeholder="Password"
+        type="password"
+      />
       <button class="btn btn-success" type="submit">Login</button>
     </form>
     }
-
-
   </div>
 </nav>
