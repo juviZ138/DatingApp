@@ -25,6 +25,7 @@ public class AccountController(UserManager<AppUser> userManager, ITokenService t
         user.UserName = registerDTO.Username.ToLower();
 
         var result = await userManager.CreateAsync(user, registerDTO.Password);
+        await userManager.AddToRoleAsync(user,"Member");
 
         if(!result.Succeeded) return BadRequest(result.Errors);
 

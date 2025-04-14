@@ -4,12 +4,13 @@ using API.Interfaces;
 namespace API.Data;
 
 public class UnitOfWork(DataContext context, IUserRepository userRepository, 
-    IMessageRepository messageRepository, ILikesRepository likesRepository) : IUnitOfWork
+    IMessageRepository messageRepository, ILikesRepository likesRepository,
+    IPhotoRepository photoRepository) : IUnitOfWork
 {
     public IUserRepository UserRespository => userRepository;
     public IMessageRepository MessageRepository => messageRepository;
     public ILikesRepository LikesRepository => likesRepository;
-
+    public IPhotoRepository PhotoRepository => photoRepository;
     public async Task<bool> Complete()
     {
         return await context.SaveChangesAsync() > 0;
