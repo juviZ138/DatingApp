@@ -42,6 +42,19 @@ export class MemberMessagesComponent implements AfterViewChecked {
     }
   }
 
+  getSentimentEmoji(sentiment: string): string {
+    switch (sentiment) {
+      case 'Positive':
+        return '😊';
+      case 'Negative':
+        return '😠';
+      case 'Neutral':
+        return '😐';
+      default:
+        return '';
+    }
+  }
+
   private scrollToBottom() {
     if (this.scrollContainer) {
       this.scrollContainer.nativeElement.scrollTop =

@@ -32,7 +32,11 @@
                 <span class="text-success">
                   (read {{ message.dateRead | timeago }})</span
                 >
+
                 }
+                <span class="sentiment-emoji" title="{{ message.sentiment }}">
+                  {{ getSentimentEmoji(message.sentiment) }}
+                </span>
               </small>
             </div>
             <p>{{ message.content }}</p>

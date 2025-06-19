@@ -18,4 +18,6 @@ public class Message
     public AppUser Sender { get; set; } = null!;
     public int RecipientId { get; set; }
     public AppUser Recipient { get; set; } = null!;
+
+    public string Sentiment { get; set; }
 }
