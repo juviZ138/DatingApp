@@ -23,7 +23,10 @@ export class NavComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
   private toaster = inject(ToastrService);
-  model: any = {};
+  model: any = {
+    username: 'lisa',
+    password: 'Pa$$w0rd',
+  };
 
   login() {
     this.accountService.login(this.model).subscribe({
